@@ -1,0 +1,16 @@
+# This dockerfile uses the ubuntu image
+# VERSION 1 - EDITION 1
+# Author: kakotor
+# Command format: Instruction [arguments / command] ..
+
+# Base image to use, this must be set as the first line
+FROM ubuntu:latest
+
+RUN mkdir -p /opt/frp
+
+COPY frpc /opt/frp/frpc
+RUN chmod +x /opt/frp/frpc
+COPY frpc.ini /opt/frp/frps.inc
+
+
+ENTRYPOINT /opt/frp/frpc -c /opt/frp/frpc.ini
